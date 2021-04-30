@@ -1,0 +1,174 @@
+import Layout from "../components/Layout";
+
+<Layout title="函数" chapter="第三章">
+
+> 人们认为计算机科学是天才的艺术，而现实正是相反。它是人们在其他人作品的基础上做出来的，就像一块块小砖砌起的墙一样。
+>
+> ——Donald Knuth
+
+![蕨类树叶图](https://eloquentjavascript.net/img/chapter_picture_3.jpg)
+
+函数是 JavaScript 程序的面包和黄油。把一段程序打包放进一个值中，这个概念有很多用处。它向我们提供了一个途径用以安排大程序的结构，减少重复性，将子程序与名称进行关联，以及让子程序彼此独立。
+
+对程序最突出的运用就是定义新的词汇。在文章中发明新词可不是好事，但在编程中，这确是必要的。
+
+典型的成年英语使用者的词汇量是 20000 个单词。有些编程语言就内建了 20000 个命令。而编程词汇则定义得更准确，不像人类语言那样具有灵活性。因此，我们需要经常引入新的概念来避免太多的自我重复。
+
+## 定义一个函数
+
+一个函数的定义是一个常规的绑定，其绑定的值是一个函数。如下面的例子，代码定义了一个`square`（平方）函数，根据给定的值来求它的平方：
+
+```javascript
+const square = function (x) {
+  return x * x;
+};
+
+console.log(square(12));
+// → 144
+```
+
+一个函数是由以关键词`function`开始的表达式创建的。函数拥有一组参数（本例中只有一个`x`）和一个主体，主体包含当函数被调用时会执行的声明。创建函数主体的方式就是永远要把内容包裹在大括号中，即使只有一句声明。
+
+一个函数可以有很多参数，也可以完全没有参数。下面的例子中，函数`makeNoise`（制造噪音）没有一个参数，而函数`power`（冪，次方）则有两个：
+
+```javascript
+const makeNoise = function () {
+  console.log("Pling!");
+};
+
+makeNoise();
+// → Pling!
+
+// base：基本值，exponent：指数，result：结果，count：次数
+const power = function (base, exponent) {
+  let result = 1;
+  for (let count = 0; count <Layout exponent; count++) {
+    result *= base;
+  }
+  return result;
+};
+
+console.log(power(2, 10));
+// → 1024
+```
+
+有些函数可以产生值，例如前面的`power`和`square`函数；有些则不会，例如`makeNoise`它的唯一结果只是产生了一个「副作用」。一个`return`（返回）声明定义了函数所返回的值。当执行过程中遇到了这个`return`声明，执行就会立即从函数中跳出并把返回的值传递给调用它的代码。当`return`关键词后面没有表达式时，那么这个函数将返回`undefined`。如果函数根本没有`return`的话，例如`makeNoise`，那么它返回的也是`undefined`。
+
+函数中的参数的执行表现就和常规的绑定一样，不过它们的初始值是在函数被调用时给定的，而不是函数这段代码本身决定的。
+
+## 绑定和作用域（Bindings & Scopes）
+
+每一个绑定都有一个*作用域*，即在程序中的这个部分，绑定都是可见的。对在任何函数或代码块外面的绑定来说，全部代码都是它们的作用域，也就是你可以在任何地方使用这些绑定。它们被称为「全局的（global）」。
+
+但是那些为函数的参数所创建的绑定，或者在函数内部进行的声明，则只能在该函数内使用，因此它们被称为「本地的（local）」。每次函数被调用时，就会为这些绑定创建新的实例。这为不同的函数之间提供了独立性——每个函数都可以在自己的小世界中运行（它的本地环境），在对全局没有任何了解的情况下也能让人理解它的功能。
+
+在*一块代码中*使用`let`和`const`做的绑定声明就是这块代码「本地的」，所以当你在一个循环中创建了这样一个声明，那么此循环之前或之后的代码都无法「看见」这个声明。在前 JavaScript 2015 时代，只有函数能创建新的作用域，所以使用`var`关键词创建的那种老式绑定能贯穿、覆盖它所在的整个函数。或者如果它不在函数中，就会覆盖全局。
+
+```js
+let x = 10;
+if (true) {
+  let y = 20;
+  var z = 30;
+  console.log(x + y + z);
+  // → 60
+}
+// y在此处是不可见的
+console.log(x + z);
+// → 40;
+```
+
+任何作用域都可以「向外」看到它周围的作用域，所以上例中`x`对`if`代码块来说是可见的。例外的情况是，当很多绑定都用同一个名称时，代码只能看到最里面的那个。如下例，`halve`（对半分）函数中的代码只能看到*它自己的*`n`，看不到全局的`n`。
+
+```js
+const halve = function (n) {
+  return n / 2;
+};
+
+let n = 10;
+console.log(halve(100));
+// → 50
+
+console.log(n);
+// → 10
+```
+
+### 嵌套作用域
+
+JavaScript 不只能区分出全局和本地的绑定。代码块和函数内部可以创建其他的代码块和函数，从而产生多种层次的「本地」。
+
+下面这个关于制作鹰嘴豆酱（hummus）的原料（ingredient）的函数里面还嵌着一个函数：
+
+```js
+const hummus = function (factor) {
+  // amount：数量；unit：单位；name：原料名称
+  const ingredient = function (amount, unit, name) {
+    let ingredientAmount = amount * factor;
+    if (ingredientAmount > 1) {
+      unit += "s";
+    }
+    console.log(`${ingredientAmount} ${unit} ${name}`);
+  };
+
+  ingredient(1, "can", "chickpeas");
+  ingredient(0.25, "cup", "tahini");
+  ingredient(0.25, "cup", "lemon juice");
+  ingredient(1, "clove", "garlic");
+  ingredient(1, "tablespoon", "olive oil");
+  ingredient(1, "teaspoon", "cumin");
+};
+```
+
+`ingredient`函数中的代码可以看到外层函数的`factor`绑定。但是其本地绑定，如`unit`和`ingredientAmount`对外层函数来说就是不可见的。
+
+一块代码中绑定的可见度是由这块代码在程序文本中的位置决定的。每个本地作用域都能看到它外层的所有本地作用域，且所有的作用域都能看到全局作用域。这种处理绑定可见度的方法叫做*词法作用域*（lexical scoping）。
+
+### 函数作为值
+
+一个函数绑定通常就是简单地给一段程序取个名字。这样一个绑定只被定义一次且永远不变。这很容易对函数和其名称产生困惑。
+
+但是这两者（名称和函数）是不同的。一个函数形式的值（一个函数就是一个值）可以做所有其他值可以做的事情，可以把它用于字母表达式，而不仅仅是调用它。也可以将一个函数形式的值存储到一个新的绑定上，或把它当作参数传递给一个函数等等。同样的，一个关联了某个函数的绑定（即前面提到的「名称」）仍然仅仅是一个普通的绑定，如果它不是常量的话，也可以被赋予新的值。例如：
+
+```js
+// launch：发射；missile：导弹
+let launchMissiles = function () {
+  // missileSystem：导弹系统
+  missileSystem.launch("现在");
+};
+
+// safeMode：安全模式
+if (safeMode) {
+  launchMissiles = function () {
+    /* 做些其他的事 */
+  };
+}
+```
+
+在第五章中，我们将讨论把函数形式的值传递给其他函数时可以实现的有趣的情况。
+
+## 声明标志
+
+还有一种稍微简短的创建函数绑定的方式。当把`function`这个关键词放在声明的开始时，写法就不一样了：
+
+```js
+function square(x) {
+  return x * x;
+}
+```
+
+这就是一个函数*声明*。声明定义了名为`square`的绑定，并将它指向给定的函数。这种写法稍微简单一些，而且在结尾也不用写分号了。
+
+这种定义方式有个微妙的地方。
+
+```js
+console.log("未来是：", future());
+
+function future() {
+  return "永远都不会有飞行汽车的。";
+}
+```
+
+上面的代码可以正常执行，即使函数是在它*下面*定义的。函数声明不属于常规的由上到下执行的程序流。它们从概念层面被移动到了它们所在作用域的最上面，以让这个作用域中所有的代码都能使用它们。这有时很有好处，因为它为书写代码提供了自由，让代码的结构更有意义，而不用担心必须要把函数们都写在最前面。
+
+## 箭头函数（Arrow Functions）
+
+</Layout>

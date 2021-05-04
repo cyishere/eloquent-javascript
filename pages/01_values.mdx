@@ -1,3 +1,76 @@
 import Layout from "@/components/Layout";
 
-<Layout chapter="第一章" title="值、类型和操作符"></Layout>
+<Layout
+  meta={{
+    chapter: "第一章",
+    title: "值、类型和运算符",
+    description: "JavaScript 的值、类型和运算符",
+  }}
+>
+
+> 在机器的表面下，程序在移动。毫不费力地，它们扩张、收缩。在伟大的和谐中，电子扩散着、重组着。屏幕上的形状就如水面的涟漪。本质则在下面隐身着。
+>
+> —— Yuan-Ma 大师，《编程之书（The Book of Programming）》
+
+![值、类型和操作符](/img/chapter_picture_1.jpeg)
+
+在计算机世界的内部只有数据。你可以读数据，修改数据，创建新的数据，但那些不是数据的东西却不能被提及。所有这些数据都以长序列的比特形式存储，因此从本质上来说它们是相似的。
+
+*比特*是二进制的，通常由 0 和 1 指代。在计算机内部，它们的形式就像是或高或地的电荷，或强或弱的信号，CD 光盘表面闪亮或黯淡的斑点。任何单独的信息都可以被缩减到 1 和 0 的组合，以比特的形式呈现。
+
+> 比特（英语：bit）是二进制中的一位，是信息的最小单位。Bit 是 binary digit（二进制数位）的混成词。（[引述自维基百科](https://zh.wikipedia.org/wiki/%E4%BD%8D%E5%85%83)）
+
+例如，我们可以用比特来表达数字 13。它的工作方式和十进制一样，但十进制是 10 个不同的数字，而比特只有 2 个，且每个数字的权重从右到左增加 2 倍。以下是组成数字 13 的比特，权重标记在数字的下面：
+
+```
+   0   0   0   0   1   1   0   1
+ 128  64  32  16   8   4   2   1
+```
+
+这就是二进制数字`00001101`，其中非零数字代表着 8、4 和 1，它们加在一起是 13。
+
+## 值
+
+请想象一个比特的海洋。一台典型的现代计算机它的易失性数据存储器（工作内存）中有超过 300 亿的比特，非易失性存储器（硬盘或等效存储设备）的容量往往要高出几个数量级。
+
+为了能在如此海量的比特中工作且不迷失，我们必须要把它们分成一堆儿一堆儿的来代表信息片段。在 JavaScript 环境中，那「一堆儿一堆儿」被成为*值*。即使所有的值都是由比特组成的，它们的身份也不相同。每个值都有一个「类型」来决定着它的身份。有些值是数字，有些是文本，有些则是函数，等等。
+
+要创建一个值，只需仅仅给它取个名字。这是很方便的。你不用为你的值收集建造材料或花钱，你只需要叫它一声，然后唰地一下它就出现了。当然，它们不是凭空被创造的。每个值都要被储存在某个地方，而如果你要在同时大量地使用它们，内存可能会不够用的。幸运的是，这个问题只在同时使用它们的时候才会出现。只要你不用哪个值了，它立刻就会消解，被它的比特留给下一代值们循环使用。
+
+这一章将介绍 JavaScript 程序的原子类元素，那就是简单的值「类型」和作用于这些值的「运算符」。
+
+## 数字
+
+*数字*类型的值毫无意外地就是数字。在 JavaScript 中，它们是写成这样的：
+
+```
+13
+```
+
+在程序中使用它，就会导致在计算机内出中生成出代表数字 13 的比特模式。
+
+JavaScript 使用固定数量的比特数位（64 位）来存储单一的数值。64 位可以形成的模式只有这么多，这就意味着用来表示不同数字的数量是有限的。使用*N*个十进制数字，可以表示 10<sup>N</sup>个数字。相似地，相似的 64 个二进制数字，你可以用来代表 2<sup>64</sup>个不同的数字，大约为 18 亿位数（一个 18 位数后面跟着 18 个零）。这可不少了。
+
+以前计算机的内存更小，人们试图用 8 位或 16 位的比特来表示数字。这么小的数字很容易就无意地*溢出*了，最终的数字无法用给定的比特来表示。今天，即使可以放进口袋的计算机都有大量的内容，所以你可以放心地使用 64 位的比特堆儿，只有在处理天文数字时才需要担心溢出问题。
+
+但是，不是所有的小于 18 亿位数的数字都能适用于 JavaScript 数字。那些储存负数的比特，还要留出一位来表示负号。更大的问题是非整数也必须表示出来。为此，有些比特被出来存储小数点的位置，所以实际用来储存完整数字的范围在 9 亿位数，依旧很巨大。
+
+有小数的数字使用点来表示：
+
+```
+9.81
+```
+
+对于非常大或非常小的数字，还需要用到科学技术法 _e_（exponent，_指数_），e 后面是该数字的指数：
+
+```
+2.998e8
+```
+
+这个数字就是 2.998 × 10<sup>8</sup> = 299,800,000。
+
+Calculations with whole numbers (also called integers) smaller than the aforementioned 9 quadrillion are guaranteed to always be precise. Unfortunately, calculations with fractional numbers are generally not. Just as π (pi) cannot be precisely expressed by a finite number of decimal digits, many numbers lose some precision when only 64 bits are available to store them. This is a shame, but it causes practical problems only in specific situations. The important thing is to be aware of it and treat fractional digital numbers as approximations, not as precise values.
+
+### 算术
+
+</Layout>

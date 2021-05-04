@@ -52,7 +52,7 @@ const Home = () => {
               </List>
               <List>
                 <Link href="01_values">
-                  <a>01. 值、类型和操作符</a>
+                  <a>01. 值、类型和运算符</a>
                 </Link>
               </List>
               <List>

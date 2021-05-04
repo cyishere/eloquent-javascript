@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import Link from "next/link";
-import Head from "next/head";
 import Prism from "prismjs";
 
 import styled from "styled-components";
+import SEO from "./SEO";
 import Footer from "./Footer";
 
-const Layout = ({ children, title, chapter }) => {
+const Layout = ({ children, meta }) => {
+  const { chapter, title, description } = meta;
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       Prism.highlightAll();
@@ -15,9 +17,7 @@ const Layout = ({ children, title, chapter }) => {
 
   return (
     <Wrapper>
-      <Head>
-        <title>{title} - Eloquent JavaScript中文版</title>
-      </Head>
+      <SEO title={title} description={description} />
       <Header>
         <h1>
           {chapter && <Chapter>{chapter}</Chapter>}

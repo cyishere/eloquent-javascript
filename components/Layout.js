@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Prism from "prismjs";
+
 import styled from "styled-components";
-import Footer from "../Footer";
+import Footer from "./Footer";
 
 const Layout = ({ children, title, chapter }) => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const Layout = ({ children, title, chapter }) => {
       </Head>
       <Header>
         <h1>
-          <Chapter>{chapter}</Chapter>
+          {chapter && <Chapter>{chapter}</Chapter>}
           {title}
         </h1>
         <nav>
@@ -37,6 +38,11 @@ const Layout = ({ children, title, chapter }) => {
 const Wrapper = styled.div`
   max-width: 1000px;
   margin: 0 auto;
+
+  @media (max-width: 1000px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `;
 
 const Header = styled.header`

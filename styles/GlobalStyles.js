@@ -21,6 +21,10 @@ body {
 
 a:not([class]) {
   color: currentColor;
+  border-bottom: 4px solid ${COLORS.yellow};
+  text-decoration: none;
+  margin-right: 2px;
+  margin-left: 2px;
 }
 
 :focus {
@@ -34,6 +38,7 @@ main:focus {
 
 [href]:hover {
   text-decoration: none;
+  border-width: 0;
 }
 
 
@@ -80,12 +85,24 @@ main:focus {
 .post blockquote {
   padding-left: ${FONTS.size600};
   border-left: 5px solid;
-  font-style: italic;
+  font-family: KaiTi, STKaiti;
+}
+
+.post blockquote p:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.post p {
+  line-height: 1.6;
 }
 
 .post ::selection {
   color: ${COLORS.white};
   background: rgba(0, 0, 0, 0.99);
+}
+
+.post ol, .post ul {
+  margin-left: 2.25rem;
 }
 
 .post p,
@@ -126,11 +143,13 @@ main:focus {
 }
 
 .post :not(pre) code {
-  background-color: ${COLORS.yellowLight};
+  background-color: ${COLORS.white};
   margin-left: 2px;
   margin-right: 2px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding: .1em .5em;
+  border-radius: .3em;
+  color: ${COLORS.blue};
+  font-size: .9em;
 }
 `;
 

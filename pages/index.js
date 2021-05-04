@@ -2,8 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import { COLORS } from "../styles/constants";
-import Footer from "../components/Footer";
+import { COLORS } from "@/styles/constants";
+import Footer from "@/components/Footer";
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
       </Head>
 
       <Main>
-        <Title>Eloquent JavaScript中文版</Title>
+        <Title>Eloquent JavaScript 中文版</Title>
 
         <Description>（第三版 2018）</Description>
 
@@ -30,23 +30,130 @@ const Home = () => {
               />
             </figure>
             <CardTitle>关于本站</CardTitle>
-            <p>
-              此中文版内容翻译自英文电子书
+            <Content>
+              本站内容翻译自英文电子书
               <a href="https://eloquentjavascript.net/index.html">
                 Eloquent JavaScript
               </a>
               。
-            </p>
-            <p>
-              这是一本关于JavaScript、编程及对电子产品的探索的书籍，您可以在这里阅读它的中文版。此中文版由本站自译，如有不当之处欢迎指正。
-            </p>
+            </Content>
+            <Content>
+              这是一本关于JavaScript、编程及对探索电子产品的书籍，您可以在这里阅读它的中文版。此中文版由本站自译，如有不当之处欢迎指正。
+            </Content>
           </Card>
 
           <Card>
             <CardTitle>目录 &rarr;</CardTitle>
             <ol>
               <List>
-                <Link href="03_functions">03. 函数</Link>
+                <Link href="00_intro">
+                  <a>介绍</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="01_values">
+                  <a>01. 值、类型和操作符</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="02_program_structure">
+                  <a>02. 程序结构</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="03_functions">
+                  <a>03. 函数</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="04_data">
+                  <a>04. 数据结构：对象和数组</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="05_higher_order">
+                  <a>05. 高级函数</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="06_object">
+                  <a>06. 对象的秘密</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="07_robot">
+                  <a>07. 项目案例：机器人</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="08_error">
+                  <a>08. Bug和错误</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="09_regexp">
+                  <a>09. 正则表达式</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="10_modules">
+                  <a>10. 模块</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="11_async">
+                  <a>11. 异步编程</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="12_language">
+                  <a>12. 项目案例：一个编程语言</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="13_browser">
+                  <a>13. JavaScript与浏览器</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="14_dom">
+                  <a>14. 文档对象模型</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="15_event">
+                  <a>15. 处理事件</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="16_game">
+                  <a>16. 项目案例：游戏</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="17_canvas">
+                  <a>17. 在Canvas上画画</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="18_http">
+                  <a>18. HTTP和表单</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="19_paint">
+                  <a>19. 项目案例：像素画编辑器</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="20_node">
+                  <a>20. Node.js</a>
+                </Link>
+              </List>
+              <List>
+                <Link href="21_skillsharing">
+                  <a>21. 项目案例：技能分享网站</a>
+                </Link>
               </List>
             </ol>
           </Card>
@@ -113,8 +220,13 @@ const CardTitle = styled.h2`
   font-size: 1.5rem;
 `;
 
+const Content = styled.p`
+  margin-bottom: 1em;
+`;
+
 const List = styled.li`
   list-style: none;
+  margin-bottom: 0.75rem;
 `;
 
 export default Home;

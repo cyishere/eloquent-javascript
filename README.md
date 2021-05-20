@@ -1,7 +1,1 @@
-## 词汇译法对照表
-
-| 英文           | 常见译法 | 本站译法 |
-| -------------- | -------- | -------- |
-| building block | 构件     | 功能组件 |
-|                |          |          |
-|                |          |          |
+边译边学[Eloquent JavaScript](https://eloquentjavascript.net/index.html)

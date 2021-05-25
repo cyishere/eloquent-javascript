@@ -17,4 +17,6 @@ export const COLORS = {
   border: "hsl(0,0%,91.8%)",
   white: "hsl(0,0%,100%)",
   lightPurple: "hsl(294,65.2%,91%)",
+  bgYellow: "hsl(60,37.9%,94.3%)",
+  khaki: "hsl(47.4,95%,68.6%)",
 };

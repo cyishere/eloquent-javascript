@@ -124,6 +124,11 @@ main:focus {
   font-style: normal;
 }
 
+.post strong {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+}
+
 .post time {
   --flow-space: ${FONTS.size400};
   display: block;

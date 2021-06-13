@@ -1,13 +1,18 @@
 import { useEffect } from "react";
-import Link from "next/link";
-import Prism from "prismjs";
-
+import { useRouter } from "next/router";
 import styled from "styled-components";
-import SEO from "./SEO";
-import Footer from "./Footer";
+import Prism from "prismjs";
+import { MDXProvider } from "@mdx-js/react";
 
-const Layout = ({ children, meta }) => {
+import { COLORS, SPACING } from "@/styles/constants";
+import SEO from "./SEO";
+import Sidebar from "./Sidebar";
+import SubContent from "./SubContent";
+import { H2, H3, H4, H5, H6 } from "./Heading";
+
+const Layout = ({ meta, children }) => {
   const { chapter, title, description } = meta;
+  const currentRoute = useRouter().pathname.split("/")[1];
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -15,52 +20,83 @@ const Layout = ({ children, meta }) => {
     }
   }, []);
 
+  const components = {
+    h2: H2,
+    h3: H3,
+    h4: H4,
+    h5: H5,
+    h6: H6,
+  };
+
   return (
-    <Wrapper>
+    <Container>
       <SEO title={title} description={description} />
-      <Header>
-        <h1>
-          {chapter && <Chapter>{chapter}</Chapter>}
-          {title}
-        </h1>
-        <nav>
-          <Link href="/">
-            <a>返回目录</a>
-          </Link>
-        </nav>
-      </Header>
-      <Post className="post">{children}</Post>
-      <Footer />
-    </Wrapper>
+
+      <Sidebar currentRoute={currentRoute} />
+
+      <Main>
+        <BgWrapper>
+          <MainWrapper>
+            <Post className="post">
+              <PageHeader>
+                {chapter ? <Chapter>{chapter}</Chapter> : null}
+
+                <h1>{title}</h1>
+              </PageHeader>
+
+              <MDXProvider components={components}>{children}</MDXProvider>
+            </Post>
+          </MainWrapper>
+
+          <section>
+            <SubContent />
+          </section>
+        </BgWrapper>
+      </Main>
+    </Container>
   );
 };
 
-const Wrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-
-  @media (max-width: 1000px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-`;
-
-const Header = styled.header`
+const Container = styled.div`
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  line-height: 2;
+  flex-direction: row;
+  align-items: stretch;
 `;
 
-const Chapter = styled.span`
-  font-size: 1.2rem;
-  font-weight: 300;
-  display: block;
+const Main = styled.main`
+  padding-left: calc((100% - 1448px) / 2 + 330px);
+  display: flex;
+  flex: 1;
+`;
+
+const BgWrapper = styled.div`
+  background-color: ${COLORS.white};
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 224px;
+`;
+
+const MainWrapper = styled.div`
+  flex: 1 1 auto;
+  margin: 0 auto;
+  max-width: 750px;
+  padding-top: ${SPACING.m3};
+  padding-bottom: ${SPACING.m3};
 `;
 
 const Post = styled.article`
-  margin-bottom: 4rem;
+  width: 100%;
+`;
+
+const PageHeader = styled.header`
+  border-bottom: 2px solid ${COLORS.grayLight};
+  margin-bottom: ${SPACING.m2};
+`;
+
+const Chapter = styled.p`
+  color: ${COLORS.textSecondary};
 `;
 
 export default Layout;

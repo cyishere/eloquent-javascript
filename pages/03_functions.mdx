@@ -1,13 +1,13 @@
 import Layout from "@/components/Layout";
 import Note from "@/components/Note";
 
-<Layout
-  meta={{
-    chapter: "第三章",
-    title: "函数",
-    description: "解释JavaScript的函数、作用域和闭包",
-  }}
->
+export const meta = {
+  chapter: "第三章",
+  title: "函数",
+  description: "解释JavaScript的函数、作用域和闭包",
+};
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
 
 > 人们认为计算机科学是天才的艺术，而现实正是相反。它是人们在其他人作品的基础上做出来的，就像一块块小砖砌起的墙一样。
 >
@@ -41,7 +41,7 @@ console.log(square(12));
 
   <ul>
     <li>形式参数是在定义函数时写在括号里面的一组「名称」，像这个例子中我们给形式参数起的名字是<code>x</code>，也可以取名为<code>number</code>或其他，那么<code>number</code>或其他就是这个例子中的形式参数了。</li>
-    <li>实际参数是实际给到函数的值，例如上例代码中的`12`就是实际参数。</li>
+    <li>实际参数是实际给到函数的值，例如上例代码中的<code>12</code>就是实际参数。</li>
   </ul>
 </Note>
 
@@ -339,5 +339,3 @@ console.log(power(2, 6));
 console.log("C", "O", 2);
 // -> C O 2
 ```
-
-</Layout>

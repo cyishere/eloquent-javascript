@@ -1,12 +1,13 @@
 import Layout from "@/components/Layout";
+import Note from "@/components/Note";
 
-<Layout
-  meta={{
-    chapter: "第二章",
-    title: "程序结构",
-    description: "解释JavaScript的程序结构、构造",
-  }}
->
+export const meta = {
+  chapter: "第二章",
+  title: "程序结构",
+  description: "解释JavaScript的程序结构、构造",
+};
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
 
 > 我的心脏在薄薄的、透明的皮肤下面发出明亮的红色光芒。他们得提供 10cc 的 JavaScript 才能把我救回来。（我对血液中毒素的反应很好。）天哪，那东西能让你把嘴里的东西全都吐出来！
 >
@@ -42,7 +43,10 @@ import Layout from "@/components/Layout";
 
 ## 绑定（bingding）
 
-> 这里还有个概念是*state*（状态），在以后的 JavaScript 编程中还会不断地遇到。
+<Note>
+  这里还有个概念是<em>state</em>（状态），在以后的 JavaScript
+  编程中还会不断地遇到。
+</Note>
 
 一个程序是如何保留内部状态的呢？它是怎么记住东西的呢？我们已经见过使用旧的值产生新的值了，但这并不会改变旧的值，且新的值需要被立即使用，否则它就又消失不见了。为了获取和保留值，JavaScript 提供了一个功能叫*绑定*，也称为*变量*。
 
@@ -155,7 +159,10 @@ propmt("输入通行密码");
 
 ## 返回值
 
-> 程序的副作用（side effect）是针对程序状态（state）来讲的。程序的状态是一段程序中所有的值，如果值发生了改变，即状态就发生了改变。像下面例子中的对话框或屏幕的变化，它们不是「值」的变化，所以属于「副作用」。
+<Note>
+  程序的副作用（side
+  effect）是针对程序状态（state）来讲的。程序的状态是一段程序中所有的值，如果值发生了改变，即状态就发生了改变。像下面例子中的对话框或屏幕的变化，它们不是「值」的变化，所以属于「副作用」。
+</Note>
 
 显示一个对话框或者在屏幕上显示文字都是*副作用*。很多程序之所以有用就是因为它们的副作用。另一些程序可以只产生值，这样即使没有副作用它们也是有用处的。例如`Math.max`函数可以在给定的一堆数字参数中选出最大的那一个：
 
@@ -175,7 +182,7 @@ console.log(Math.min(2, 4) + 100);
 
 ## 控制流
 
-> 控制流（control flow）：程序的执行顺序。
+<Note>控制流（control flow）：程序的执行顺序。</Note>
 
 当程序中包含的语句多于一条时，语句的执行顺序就如讲故事一样是从上到下进行的。下面的程序例子中有两条语句，第一条向用户要了一个数字，第二条在第一条之后执行，显示了那个数字的平方。
 
@@ -215,5 +222,3 @@ if (!Number.isNaN(theNumber)) {
 if (1 + 1 == 2) console.log("是 true");
 // 是 true
 ```
-
-</Layout>

@@ -1,11 +1,13 @@
 import Layout from "@/components/Layout";
 import { OriginLink } from "@/components/Link";
 
-<Layout meta={{
+export const meta = {
   chapter: null,
   title: "介绍",
-  description: "JavaScript 的基本知识"
-}}>
+  description: "JavaScript 的基本知识",
+};
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
 
 > 我们认为我们在为了自己的目的而创建系统。我们相信它是按照我们自己的设想而被制作的……但是计算机真的和我们不一样。它只是我们自身很小的一部分的投射：这部分专指逻辑、顺序、规则和清晰。
 >
@@ -214,5 +216,3 @@ console.log(factorial(8));
 也希望大家可以熟悉这些英文单词，从而形成「把名称取得有意义」这一编程概念。例如我们可以把上面那个函数命名为`jieCheng`，而不要随便取个名字`abc`之类的。「有意义地命名」是个很好的编程习惯。
 
 预祝大家学习顺利！过程中有任何疑问和建议，欢迎在[「我们来开发」论坛](https://womenlai.dev)留言给我，感谢！
-
-</Layout>

@@ -1,12 +1,12 @@
 import Layout from "@/components/Layout";
 
-<Layout
-  meta={{
-    chapter: "第一章",
-    title: "值、类型和运算符",
-    description: "JavaScript 的值、类型和运算符",
-  }}
->
+export const meta = {
+  chapter: "第一章",
+  title: "值、类型和运算符",
+  description: "JavaScript 的值、类型和运算符",
+};
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
 
 > 在机器的表面下，程序在移动。毫不费力地，它们扩张、收缩。在伟大的和谐中，电子扩散着、重组着。屏幕上的形状就如水面的涟漪。本质则在下面隐身着。
 >
@@ -236,5 +236,3 @@ console.log(NaN == NaN);
 `NaN`是用来表示无意义的运算结果的，因此，它不可能与*其他的*无意义的运算结果相同。
 
 ### 逻辑运算符
-
-</Layout>

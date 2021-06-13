@@ -26,3 +26,8 @@ yarn dev
 
 npm run dev
 ```
+
+## TO DO
+
+- [ ] TOC (https://github.com/remarkjs/remark-toc)
+- [ ] Footer navigation

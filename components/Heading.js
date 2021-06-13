@@ -1,4 +1,10 @@
-const Content = ({ anchor, main }) => {
+import pinyin from "pinyin";
+
+const Content = ({ main }) => {
+  const anchor = pinyin(main, {
+    style: pinyin.STYLE_FIRST_LETTER,
+  }).join("-");
+
   const link = `#${anchor}`;
 
   return (
@@ -11,28 +17,28 @@ const Content = ({ anchor, main }) => {
   );
 };
 
-export const H2 = ({ anchor, children }) => (
+export const H2 = ({ children }) => (
   <h2>
-    <Content anchor={anchor} main={children} />
+    <Content main={children} />
   </h2>
 );
-export const H3 = ({ anchor, children }) => (
+export const H3 = ({ children }) => (
   <h3>
-    <Content anchor={anchor} main={children} />
+    <Content main={children} />
   </h3>
 );
-export const H4 = ({ anchor, children }) => (
+export const H4 = ({ children }) => (
   <h4>
-    <Content anchor={anchor} main={children} />
+    <Content main={children} />
   </h4>
 );
-export const H5 = ({ anchor, children }) => (
+export const H5 = ({ children }) => (
   <h5>
-    <Content anchor={anchor} main={children} />
+    <Content main={children} />
   </h5>
 );
-export const H6 = ({ anchor, children }) => (
+export const H6 = ({ children }) => (
   <h6>
-    <Content anchor={anchor} main={children} />
+    <Content main={children} />
   </h6>
 );

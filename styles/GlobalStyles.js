@@ -325,7 +325,7 @@ main:focus {
   vertical-align: baseline;
 }
 .post code {
-  background-color: ${COLORS.lightPurple};
+  background-color: ${COLORS.yellowLight};
   margin-left: ${SPACING.m025};
   margin-right: ${SPACING.m025};
 }

@@ -8,7 +8,7 @@ import { COLORS, SPACING } from "@/styles/constants";
 import SEO from "./SEO";
 import Sidebar from "./Sidebar";
 import SubContent from "./SubContent";
-import { H2, H3, H4, H5, H6 } from "./Heading";
+import MDXComponents from "./MDXComponents";
 
 const Layout = ({ meta, children }) => {
   const { chapter, title, description } = meta;
@@ -19,14 +19,6 @@ const Layout = ({ meta, children }) => {
       Prism.highlightAll();
     }
   }, []);
-
-  const components = {
-    h2: H2,
-    h3: H3,
-    h4: H4,
-    h5: H5,
-    h6: H6,
-  };
 
   return (
     <Container>
@@ -44,7 +36,7 @@ const Layout = ({ meta, children }) => {
                 <h1>{title}</h1>
               </PageHeader>
 
-              <MDXProvider components={components}>{children}</MDXProvider>
+              <MDXProvider components={MDXComponents}>{children}</MDXProvider>
             </Post>
           </MainWrapper>
 

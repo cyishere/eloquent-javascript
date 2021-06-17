@@ -7,8 +7,7 @@ const Sidebar = ({ currentRoute }) => {
   return (
     <Wrapper>
       <Logo>
-        Eloquent JavaScript
-        <br />
+        <LogoEm>Eloquent JavaScript</LogoEm>
         中文版 <LogoAdd>第三版</LogoAdd>
       </Logo>
       <List role="list">
@@ -205,6 +204,12 @@ const Logo = styled.p`
   font-size: ${FONTS.h4FontSize};
   margin-left: ${SPACING.m15};
   margin-bottom: ${SPACING.m3};
+`;
+
+const LogoEm = styled.em`
+  font-style: normal;
+  color: ${COLORS.yellow};
+  display: block;
 `;
 
 const LogoAdd = styled.span`

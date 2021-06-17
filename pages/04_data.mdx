@@ -1,0 +1,93 @@
+import Layout from "@/components/Layout";
+import Note from "@/components/Note";
+
+export const meta = {
+  chapter: "第四章",
+  title: "数据结构：对象和数组",
+  description: "解释JavaScript的对象、数组",
+};
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+
+> On two occasions I have been asked, ‘Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?’ [...] I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.
+>
+> ——Charles Babbage, Passages from the Life of a Philosopher (1864)
+
+![兔子、眼镜、书](/img/chapter_picture_4.jpeg)
+
+## 松鼠
+
+## 数据集合
+
+## 属性
+
+## 方法
+
+## 对象
+
+## 可变性
+
+*很快*我们就能正真地编程了。首先，还需要再理解一点儿理论方面的东西。
+
+我们看到对象的值是可以被修改的。前面几章讨论过的值的类型，像是数字、字符串和布尔，都是不可变的——这些类型的值是不可能被改变的。你可以把它们组合在一起并从中获取新的值，但是当你拿到一个特定的字符串值时，那个值就永远保持那样了。它其中的文本是不能被改变的。如果你有一个字符串包含的文本是`"cat"`，它是没有可能被其他代码所改变的。例如没有可能把其中的一个字符改了从而改成`"rat"`，这是不可能的。
+
+对象的工作原理不同。你*可以*改变它们的属性，以致对象的一个值可以在不同的时间具有不同的内容。
+
+当我们有两个数字`120`和`120`时，我们可以将它们视为完全相同的数字，不论它们是否是完全相同的物理数值。但对对象来说，指向相同对象的两个绑定与包含相同属性的两个对象，它们是有区别的。请看下面的代码：
+
+```javascript
+let object1 = { value: 10 };
+let object2 = object1;
+let object3 = { value: 10 };
+
+console.log(object1 == object2);
+// -> true
+console.log(object1 == object3);
+// -> false
+
+object1.value = 15;
+console.log(object2.value);
+// -> 15
+console.log(object3.value);
+// -> 10
+```
+
+`object1`和`object2`抓取的是*相同的*对象，这就是为什么改变`object1`时`object2`的值也变了。它们有着相同的*本体*。而绑定`object3`指向的是不同的对象，这个对象初始时包含着与`object1`相同的属性，但它们过着不同的「人生」。
+
+绑定可以是可变的，也可以是常量，但这是由它们的值的行为区别的。即使数字值不会改变，但你可以使用`let`来定义绑定并通过改变绑定指向的值来追踪数字的变化。相似地，使用`const`定义绑定并指向一个对象，这个绑定自己是不变的，它一直指向的是同一个对象，但对象的*内容*是可以变化的。
+
+```javascript
+const score = { visitors: 0, home: 0 };
+
+// 这是可以的
+score.visitors = 1;
+
+// 这是不被允许的
+score = { visitors: 1, home: 1 };
+```
+
+当你使用 JavaScript 的`==`运算符来比较对象的时候，它比较的是对象的本体：只有在对象们完全相同、一模一样的时候才会返回`true`。比较不同的对象返回的是`false`，即使它们的属性是相同的。JavaScript 中没有「深层的」比较操作，也就是没有现成的比较对象里面内容的方法，但是你可以自己来写这样的代码进行比较（本章最后就有一个这样的[练习](#l-x)）。
+
+## 狼人日志
+
+## 计算相关性
+
+## 数组循环
+
+## 最后的分析
+
+## 阵列学
+
+## 字符串和它们的属性
+
+## 其余的形式参数
+
+## 数学对象
+
+## 解构
+
+## JSON
+
+## 总结
+
+## 练习

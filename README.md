@@ -13,7 +13,7 @@
 ```bash
 # === 安装 ===
 
-cd eloquent-js-zh
+cd eloquent-javascript
 
 yarn install
 
@@ -31,5 +31,5 @@ npm run dev
 
 ## TO DO
 
-- [x] TOC: I don't know how to use the `[remark-toc](https://github.com/remarkjs/remark-toc)` package, so I wrote one by myself. [Here's the code](./utils/toc.js).
+- [x] TOC: I don't know how to use the [`remark-toc`](https://github.com/remarkjs/remark-toc) package, so I wrote one by myself. [Here's the code](./utils/toc.js).
 - [ ] Footer navigation

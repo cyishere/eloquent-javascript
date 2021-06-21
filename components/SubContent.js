@@ -1,23 +1,18 @@
 import styled from "styled-components";
+
 import { COLORS, FONTS, SPACING } from "@/styles/constants";
 
-const SubContent = () => {
+const SubContent = ({ headingLines }) => {
   return (
     <Wrapper>
       <SpaceWrapper>
         <ContentTitle>本页目录</ContentTitle>
         <List role="list">
-          <li>
-            <Anchor href="#" className="active">
-              缘起
-            </Anchor>
-          </li>
-          <li>
-            <Anchor href="#">说明</Anchor>
-          </li>
-          <li>
-            <Anchor href="#">词汇表</Anchor>
-          </li>
+          {headingLines.map((heading) => (
+            <li key={heading.text}>
+              <Anchor href={heading.link}>{heading.text}</Anchor>
+            </li>
+          ))}
         </List>
       </SpaceWrapper>
     </Wrapper>

@@ -1,12 +1,4 @@
-import pinyin from "pinyin";
-
-function anchor(content) {
-  const id = pinyin(content, {
-    style: pinyin.STYLE_FIRST_LETTER,
-  }).join("_");
-
-  return { id, link: `#${id}` };
-}
+import { anchor } from "@/utils/toc";
 
 const H2 = ({ children }) => {
   const { id, link } = anchor(children);

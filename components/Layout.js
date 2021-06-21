@@ -3,16 +3,22 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Prism from "prismjs";
 import { MDXProvider } from "@mdx-js/react";
+import { renderToString } from "react-dom/server";
 
 import { COLORS, SPACING } from "@/styles/constants";
 import SEO from "./SEO";
 import Sidebar from "./Sidebar";
 import SubContent from "./SubContent";
 import MDXComponents from "./MDXComponents";
+import { getHeadings } from "@/utils/toc";
 
 const Layout = ({ meta, children }) => {
   const { chapter, title, description } = meta;
   const currentRoute = useRouter().pathname.split("/")[1];
+
+  const contentString = renderToString(children);
+
+  const headingLines = getHeadings(contentString);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -41,7 +47,9 @@ const Layout = ({ meta, children }) => {
           </MainWrapper>
 
           <section>
-            <SubContent />
+            {headingLines.length > 0 ? (
+              <SubContent headingLines={headingLines} />
+            ) : null}
           </section>
         </BgWrapper>
       </Main>

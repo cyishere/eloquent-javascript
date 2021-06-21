@@ -1,5 +1,7 @@
 # 关于
 
+**持续翻译中……**
+
 本人正在学习 JavaScript，并且希望通过翻译《[Eloquent JavaScript](https://eloquentjavascript.net/index.html)》来更好地理解和巩固知识。
 
 翻译如果不当之处，欢迎指正！
@@ -29,5 +31,5 @@ npm run dev
 
 ## TO DO
 
-- [ ] TOC (https://github.com/remarkjs/remark-toc)
+- [x] TOC: I don't know how to use the `[remark-toc](https://github.com/remarkjs/remark-toc)` package, so I wrote one by myself. [Here's the code](./utils/toc.js).
 - [ ] Footer navigation
